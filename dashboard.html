@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Pesona Banda Neira</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f4f7;
+    }
+
+    header {
+      background-color: #1f2937;
+      color: white;
+      padding: 20px;
+    }
+
+    header .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    header .title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .logout-btn-top {
+      padding: 8px 16px;
+      background-color: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+    }
+
+    .gallery img {
+      width: 200px;
+      border-radius: 10px;
+      cursor: zoom-in;
+    }
+
+    .villa-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .villa-list li {
+      margin-bottom: 15px;
+      padding: 10px;
+      background-color: #f9fafb;
+      border-left: 5px solid #3b82f6;
+      border-radius: 5px;
+    }
+
+    .villa-list li strong {
+      font-size: 16px;
+      color: #2563eb;
+      cursor: pointer;
+    }
+
+    .villa-image {
+      margin-top: 10px;
+      display: none;
+    }
+
+    .villa-image img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
+      cursor: zoom-in;
+    }
+
+    /* Modal Zoom */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-content {
+      margin: 5% auto;
+      display: block;
+      max-width: 80%;
+      border-radius: 10px;
+    }
+
+    .modal-content:hover {
+      cursor: zoom-out;
+    }
+
+    footer {
+      text-align: center;
+      color: #555;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="title">Pesona Banda Neira</div>
+      <button class="logout-btn-top" onclick="logout()">Logout</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h3>Informasi Wisata</h3>
+      <p>
+        Banda Neira adalah sebuah pulau kecil yang menjadi bagian dari Kepulauan Banda di Maluku, sering disebut sebagai "Mutiara dari Timur". Banda Neira menyuguhkan keindahan alam bawah laut, sejarah kolonial, dan budaya lokal. Objek wisata populer antara lain Benteng Belgica, Gunung Api Banda, dan rumah pengasingan Bung Hatta.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Peta Lokasi</h3>
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63637.17120565473!2d129.8601704!3d-4.5217051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d6d012cc8b4a68d%3A0xa98b015f51f963a3!2sBanda%20Neira%2C%20Maluku%2C%20Indonesia!5e0!3m2!1sid!2sid!4v1718198111141!5m2!1sid!2sid"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+
+    <div class="card">
+      <h3>Galeri</h3>
+      <div class="gallery">
+        <img src="2.jpg" alt="Banda Neira 1" onclick="zoomImage(this)">
+        <img src="3.jpg" alt="Banda Neira 2" onclick="zoomImage(this)">
+        <img src="rabia.jpg" alt="Banda Neira 3" onclick="zoomImage(this)">
+        <img src="4.jpg" alt="Banda Neira 4" onclick="zoomImage(this)">
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Rekomendasi Vila</h3>
+      <ul class="villa-list">
+        <li>
+          <strong onclick="toggleImage('vila1')">Vila Maulana</strong><br>
+          Lokasi strategis dekat pelabuhan. Cocok untuk wisatawan keluarga. Fasilitas AC, Wi-Fi, dan sarapan gratis.
+          <div id="vila1" class="villa-image">
+            <img src="vilamaulana.jpeg" alt="Vila Maulana" onclick="zoomImage(this)">
+          </div>
+        </li>
+        <li>
+          <strong onclick="toggleImage('vila2')">Vila Bella Vista</strong><br>
+          Menghadap laut dengan pemandangan matahari terbit. Menyediakan pemandu wisata dan sewa alat snorkeling.
+          <div id="vila2" class="villa-image">
+            <img src="vilabellavista.jpg" alt="Vila Bella Vista" onclick="zoomImage(this)">
+          </div>
+        </li>
+        <li>
+          <strong onclick="toggleImage('vila3')">Neira Dive Resort</strong><br>
+          Cocok untuk penyelam dan pecinta laut. Akses langsung ke spot diving Banda Neira. Ramah backpacker dan grup.
+          <div id="vila3" class="villa-image">
+            <img src="neiradive.jpg" alt="Neira Dive Resort" onclick="zoomImage(this)">
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <footer>
+      © 2025 Pesona Banda Neira. Semua hak dilindungi.
+    </footer>
+  </div>
+
+  <!-- Modal Zoom -->
+  <div id="zoomModal" class="modal" onclick="closeModal()">
+    <img id="modalImage" class="modal-content">
+  </div>
+
+  <script>
+    function logout() {
+      window.location.href = "login.html";
+    }
+
+    function toggleImage(id) {
+      const imgDiv = document.getElementById(id);
+      imgDiv.style.display = imgDiv.style.display === "block" ? "none" : "block";
+    }
+
+    function zoomImage(imgElement) {
+      const modal = document.getElementById("zoomModal");
+      const modalImg = document.getElementById("modalImage");
+      modal.style.display = "block";
+      modalImg.src = imgElement.src;
+      modalImg.alt = imgElement.alt;
+    }
+
+    function closeModal() {
+      document.getElementById("zoomModal").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
