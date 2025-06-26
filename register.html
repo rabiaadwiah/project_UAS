@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar Akun Baru</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(3px);
+      z-index: 0;
+    }
+
+    .register-container {
+      position: relative;
+      z-index: 1;
+      background: transparent;
+      text-align: center;
+      color: white;
+      padding: 20px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      font-size: 26px;
+      margin-bottom: 30px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 16px;
+      border: none;
+      border-radius: 25px;
+      font-size: 15px;
+      text-align: left;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 25px;
+      font-size: 15px;
+      font-weight: bold;
+      background-color: #3c582f;
+      color: white;
+      cursor: pointer;
+    }
+
+    .login-link {
+      margin-top: 16px;
+      font-size: 14px;
+    }
+
+    .login-link a {
+      color: lightgreen;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <h2>Daftar Akun Baru</h2>
+    <form action="register.php" method="POST">
+      <input type="text" name="nama" placeholder="Nama Lengkap" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Kata Sandi" required />
+      <input type="password" name="confirmPassword" placeholder="Konfirmasi Kata Sandi" required />
+      <button type="submit">Daftar</button>
+    </form>
+
+    <div class="login-link">
+      sudah punya akun? <a href="login.html">masuk di sini</a>
+    </div>
+  </div>
+
+</body>
+</html>
